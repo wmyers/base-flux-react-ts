@@ -1,7 +1,7 @@
 {
-  "name": "jv-touchstone-fullstack",
+  "name": "base-react-flux-ts",
   "version": "0.0.1",
-  "description": "Jobvaults mobile-first build with TouchstoneJS",
+  "description": "A mobile-first starter codebase with TouchstoneJS",
   "main": "src/js/index.jsx",
   "author": "Will Myers",
 
@@ -28,10 +28,7 @@
 
     "request": "^2.57.0",
     "lodash": "^3.9.3",
-    "underscore": "^1.7.0",
     "bluebird": "~2.9.27",
-    "superagent": "^0.21.0",
-    "async": "^1.0.0",
     "moment": "^2.9.0",
 
     "classnames": "^2.0.0",

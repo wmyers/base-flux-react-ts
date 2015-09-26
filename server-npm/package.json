@@ -3,7 +3,6 @@
   "dependencies": {
     "moment": "^2.9.0",
     "react": "^0.13.3",
-    "superagent": "^0.21.0",
     "bluebird": "~2.9.27",
     "body-parser": "^1.12.4",
     "composable-middleware": "^0.3.0",
