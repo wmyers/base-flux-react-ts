@@ -1,0 +1,147 @@
+// color palette
+@blue:                   rgb(91, 171, 197);
+@teal:                   rgb(218 , 218, 218);
+@white:                  rgb(245 , 245, 245);
+@black:                  rgb(37 , 37, 37);
+
+//core variable overrides
+@body-bg:                      lighten(@teal, 20%);
+@font-family-base:             Arial, sans-serif;
+@link-color:                   @blue;
+@link-hover-color:             lighten(@link-color, 10%);
+
+//headerbar override
+@headerbar-bg: @teal;
+@headerbar-color: @white;
+
+//footerbar override
+.Footerbar.blue { background-color: @blue; }
+.Footerbar.teal { background-color: @teal; }
+
+//panel override
+//get rid of keylines on top and bottom edge
+.panel:before{
+  height: 0;
+}
+.panel:after{
+  height: 0;
+}
+
+//panel buttons override
+.panel-button {
+  &.primary,
+	&.primary:hover,
+	&.primary:focus {
+    color: @white;
+    background-color: @teal ;
+    font-weight: @font-weight-bold;
+  }
+  //get rid of keyline on top edge
+	&.primary:before {
+    height: 0;
+  }
+
+  &.primary-inv,
+	&.primary-inv:hover,
+	&.primary-inv:focus {
+    color: @black;
+    background-color: lighten(@teal, 10%);
+    font-weight: @font-weight-bold;
+  }
+  //get rid of keyline on top edge
+  &.primary-inv:before {
+    height: 0;
+  }
+}
+
+//forms fields override
+@field-height:                36px;
+@field-color:                 @black;
+
+//forms items override
+@item-color:                  @black;
+@item-divider-color:          @black;
+
+//reduce height and indentation of item
+.item-inner {
+  padding: 8px 10px;
+}
+//remove padding-left to allow item keyline pseudo class to extend full-width
+.list-item{
+  padding-left: 0;
+}
+//change select-field-indicator bg color
+.select-field-indicator {
+	background-color: @white;
+}
+//change panel-header
+.panel-header {
+	color: @black;
+	line-height: 1;
+	text-transform: none;
+  font-weight: 400;
+}
+
+//forms
+.form-fields{
+  background-color: @white;
+  border-left: 5px solid @body-bg;
+  border-right: 5px solid @body-bg;
+}
+
+.form-fields > .list-item {
+  border-bottom: 3px solid @body-bg;
+}
+
+.form-fields > .list-item-part {
+  border-bottom: 0;
+}
+
+//panel button info
+.panel-btn-info {
+	color: @blue;
+	line-height: 1;
+  text-align: center !important;
+  margin-bottom: 6px;
+}
+
+
+//circular tout
+.tout-circle-container {
+  display: table;
+  margin: 40px auto;
+}
+.tout-circle, .fb-circle {
+  border-radius: 50%;
+  padding: 10px;
+  color: @white;
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+}
+.tout-circle{
+  background-color: @blue;
+  width: 200px;
+  height: 200px;
+}
+.tout-circle a {
+  text-decoration: underline;
+}
+.fb-circle{
+  background-color: #3b579d;
+  width: 100px;
+  height: 100px;
+}
+
+//override
+.loading-overlay {
+	background-color: rgba(0, 0, 0, 0.4);
+}
+.loading-spinner,
+.loading-spinner-indicator {
+	border: 10px solid rgba(0, 0, 0, 0.5);
+}
+.loading-spinner-indicator {
+	border-color: transparent;
+	border-top-color: white;
+}
