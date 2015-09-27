@@ -1,5 +1,4 @@
 import React, { cloneElement } from 'react/addons';
-import HashHistory from 'react-router/lib/HashHistory';
 
 import LoginStore from '../stores/LoginStore';
 import RouterStore from '../stores/RouterStore';

@@ -1,19 +1,19 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import ModalMixin from '../mixins/ModalMixin';
-import LoginActionCreators from '../actions/LoginActionCreators';
-import LoginStore from '../stores/LoginStore';
-import Tappable from 'react-tappable';
-import { UI } from 'touchstonejs';
-import PanelNextButton from '../components/ui/PanelNextButton';
+import React from "react";
+import ReactMixin from "react-mixin";
+import ModalMixin from "../mixins/ModalMixin";
+import LoginActionCreators from "../actions/LoginActionCreators";
+import LoginStore from "../stores/LoginStore";
+import Tappable from "react-tappable";
+import { UI } from "touchstonejs";
+import PanelNextButton from "../components/ui/PanelNextButton";
 
 class Login extends React.Component {
 
   constructor() {
     super()
     this.state = {
-			email: '',
-			password: '',
+			email: "",
+			password: "",
     };
   }
 
@@ -47,7 +47,7 @@ class Login extends React.Component {
   render() {
 
     const pushBelowFoldStyle = {
-      marginTop: '30px'
+      marginTop: "30px"
     };
 
     const fbLogoPath = "../../img/fb_logo.png";
@@ -55,7 +55,8 @@ class Login extends React.Component {
     return (
       <UI.View>
   			<UI.ViewContent grow scrollable >
-          <div className="tout-circle-container">
+
+          {/*<div className="tout-circle-container">
             <div className="fb-circle"><span><img src={fbLogoPath}/></span></div>
           </div>
 
@@ -63,11 +64,11 @@ class Login extends React.Component {
             <Tappable onTap={this.fbLogin.bind(this)} className="panel-button primary" component="button">
              Start using with Facebook!
   					</Tappable>
-          </div>
+          </div>*/}
 
           <div className="panel form-fields" style={pushBelowFoldStyle}>
-  					<UI.LabelInput type="email" label="Email" placeholder="Email" valueLink={this.linkState('email')}/>
-  					<UI.LabelInput type="password" label="Password" placeholder="Password" valueLink={this.linkState('password')}/>
+  					<UI.LabelInput type="email" label="Email" placeholder="Email" valueLink={this.linkState("email")}/>
+  					<UI.LabelInput type="password" label="Password" placeholder="Password" valueLink={this.linkState("password")}/>
             <Tappable onTap={this.login.bind(this)} className="panel-button primary" component="button">
   						Login
   					</Tappable>

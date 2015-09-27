@@ -82,7 +82,7 @@ class LoginStore extends AbstractRequestStore {
   }
 
   _autoLogin () {
-    let jwt = localStorage.getItem('jv_jwt');
+    let jwt = localStorage.getItem('app_jwt');
     if (jwt) {
       this._setToken(jwt);
       this._getUserData();
@@ -97,13 +97,13 @@ class LoginStore extends AbstractRequestStore {
 
   _setToken (token) {
     this._jwt = token;
-    localStorage.setItem('jv_jwt', this._jwt);
+    localStorage.setItem('app_jwt', this._jwt);
   }
 
   _clean () {
     this._user = null;
     this._jwt = null;
-    localStorage.setItem('jv_jwt', '');
+    localStorage.setItem('app_jwt', '');
   }
 
   get user() {

@@ -1,18 +1,11 @@
-import React from 'react';
-import AuthenticatedView from './AuthenticatedView';
-import LoginActionCreators from '../actions/LoginActionCreators';
-import Tappable from 'react-tappable';
-import { UI } from 'touchstonejs';
-import PanelNextButton from '../components/ui/PanelNextButton';
+import React from "react";
+import AuthenticatedView from "./AuthenticatedView";
+import LoginActionCreators from "../actions/LoginActionCreators";
+import Tappable from "react-tappable";
+import { UI } from "touchstonejs";
+import PanelNextButton from "../components/ui/PanelNextButton";
 
 export default AuthenticatedView(class Settings extends React.Component {
-
-  componentWillMount(){
-    this.state = {
-      employee:EmployeeStore.employee,
-      employer:EmployerStore.employer
-    };
-  }
 
   //action
   logout(e) {
@@ -22,7 +15,7 @@ export default AuthenticatedView(class Settings extends React.Component {
 
   gotoGravatar(e){
     e.target && e.preventDefault();
-    window.location = 'http://en.gravatar.com/emails/';
+    window.location = "http://en.gravatar.com/emails/";
   }
 
   render() {

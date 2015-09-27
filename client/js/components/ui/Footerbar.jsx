@@ -41,7 +41,7 @@ class Footerbar extends React.Component {
 
   render() {
     return (
-      <UI.Footerbar type="default">
+      <UI.Footerbar type="primary">
         <UI.FooterbarButton label="Back" icon="ion-ios7-arrow-left" onTap={this.goBack.bind(this)}/>
         <UI.FooterbarButton label="Home" icon="ion-ios7-home-outline" onTap={this.goHome.bind(this)}/>
         <UI.FooterbarButton label="Settings" icon="ion-ios7-settings" onTap={this.goSettings.bind(this)}/>
