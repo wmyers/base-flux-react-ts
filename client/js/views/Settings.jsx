@@ -23,7 +23,7 @@ export default AuthenticatedView(class Settings extends React.Component {
 
     return (
       <UI.ViewContent grow scrollable>
-        <div className="panel form-fields">
+        <div className="panel panel--first form-fields">
 					<Tappable onTap={this.gotoGravatar.bind(this)} className="panel-button primary-inv" component="button">
 						Set your Gravatar
 					</Tappable>

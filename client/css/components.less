@@ -1,21 +1,21 @@
 // color palette
-@blue:                   rgb(91, 171, 197);
+@blue:                   rgb(54, 163, 199);
 @teal:                   rgb(218 , 218, 218);
-@white:                  rgb(245 , 245, 245);
+@white:                  rgb(253 , 253, 253);
 @black:                  rgb(37 , 37, 37);
 
 //core variable overrides
-@body-bg:                      lighten(@teal, 20%);
+@body-bg:                      darken(@teal, 5%);
 @font-family-base:             Arial, sans-serif;
 @link-color:                   @blue;
 @link-hover-color:             lighten(@link-color, 10%);
 
 //headerbar override
-@headerbar-bg: darken(@teal, 20%);
+@headerbar-bg: darken(@teal, 25%);
 @headerbar-color: @white;
 
 //footerbar override
-.Footerbar.blue { background-color: @blue; }
+.Footerbar.blue { background-color: darken(@blue, 20%); }
 .Footerbar.teal { background-color: @teal; }
 
 //panel override
@@ -33,10 +33,10 @@
 	&.primary:hover,
 	&.primary:focus {
     color: @white;
-    background-color: darken(@teal, 10%) ;
+    background-color: darken(@blue, 10%) ;
     font-weight: @font-weight-bold;
   }
-  //get rid of keyline on top edge
+  get rid of keyline on top edge
 	&.primary:before {
     height: 0;
   }
@@ -45,10 +45,10 @@
 	&.primary-inv:hover,
 	&.primary-inv:focus {
     color: @black;
-    background-color: lighten(@teal, 10%);
+    background-color: lighten(@blue, 10%);
     font-weight: @font-weight-bold;
   }
-  //get rid of keyline on top edge
+  get rid of keyline on top edge
   &.primary-inv:before {
     height: 0;
   }
@@ -60,7 +60,7 @@
 
 //forms items override
 @item-color:                  @black;
-@item-divider-color:          @black;
+@item-divider-color:          darken(@teal, 20%);;
 
 //reduce height and indentation of item
 .item-inner {
@@ -84,9 +84,9 @@
 
 //forms
 .form-fields{
-  background-color: @white;
-  border-left: 5px solid @body-bg;
-  border-right: 5px solid @body-bg;
+  max-width: 668px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-fields > .list-item {
@@ -99,7 +99,7 @@
 
 //panel button info
 .panel-btn-info {
-	color: @blue;
+	color: darken(@blue, 15%);
 	line-height: 1;
   text-align: center !important;
   margin-bottom: 6px;

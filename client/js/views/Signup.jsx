@@ -5,6 +5,7 @@ import LoginActionCreators from "../actions/LoginActionCreators";
 import SignupStore from "../stores/SignupStore";
 import Tappable from "react-tappable";
 import { UI } from "touchstonejs";
+import Headerbar from '../components/ui/Headerbar';
 
 class Signup extends React.Component {
 
@@ -73,14 +74,11 @@ class Signup extends React.Component {
 
   render() {
 
-    const logoContainerStyle = {
-      padding: "40px 0"
-    };
-
     return (
 			<UI.View>
+        <Headerbar headerbarLabel={this.props.route.title}/>
 				<UI.ViewContent grow scrollable >
-					<div className="panel form-fields">
+					<div className="panel panel--first form-fields">
 						<UI.LabelInput type="text" label="First name" placeholder="First name" valueLink={this.linkState("firstName")}/>
 						<UI.LabelInput type="text" label="Last name" placeholder="Last name" valueLink={this.linkState("lastName")}/>
 						<UI.LabelInput type="email" label="Email" placeholder="Email" valueLink={this.linkState("email")}/>

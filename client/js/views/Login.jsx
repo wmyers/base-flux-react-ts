@@ -6,6 +6,7 @@ import LoginStore from "../stores/LoginStore";
 import Tappable from "react-tappable";
 import { UI } from "touchstonejs";
 import PanelNextButton from "../components/ui/PanelNextButton";
+import Headerbar from '../components/ui/Headerbar';
 
 class Login extends React.Component {
 
@@ -46,14 +47,11 @@ class Login extends React.Component {
 
   render() {
 
-    const pushBelowFoldStyle = {
-      marginTop: "30px"
-    };
-
     const fbLogoPath = "../../img/fb_logo.png";
 
     return (
       <UI.View>
+        <Headerbar headerbarLabel={this.props.route.title}/>
   			<UI.ViewContent grow scrollable >
 
           {/*<div className="tout-circle-container">
@@ -66,7 +64,7 @@ class Login extends React.Component {
   					</Tappable>
           </div>*/}
 
-          <div className="panel form-fields" style={pushBelowFoldStyle}>
+          <div className="panel panel--first form-fields">
   					<UI.LabelInput type="email" label="Email" placeholder="Email" valueLink={this.linkState("email")}/>
   					<UI.LabelInput type="password" label="Password" placeholder="Password" valueLink={this.linkState("password")}/>
             <Tappable onTap={this.login.bind(this)} className="panel-button primary" component="button">
@@ -75,7 +73,7 @@ class Login extends React.Component {
   				</div>
 
           <div className="panel-btn-info">Not yet registered?</div>
-          <PanelNextButton nextPath="signup" nextLabel="Register" />
+          <PanelNextButton nextPath="signup" nextLabel="Register" className="form-fields"/>
   			</UI.ViewContent>
     </UI.View>
     );

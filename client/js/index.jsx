@@ -16,7 +16,7 @@ React.render((
       <Route name="signup" path="signup" title="Sign up" component={Signup} />
       <Route name="loggedin" path="loggedin/:token" component={LoggedInShim} />
       <Route name="shim" path="shim" component={Shim} />
-      <Route name="home" path="home" title="JobVaults" component={Home} onEnter={Home.onEnter} hideSubHeader/>
+      <Route name="home" path="home" title="Welcome" component={Home} onEnter={Home.onEnter} hideSubHeader/>
       <Route name="settings" path="settings" title="Settings" component={Settings} onEnter={Settings.onEnter}/>
     </Route>
   </Router>
