@@ -33,6 +33,7 @@ class LoginStore extends AbstractRequestStore {
       case ActionTypes.REQUEST_LOGIN_USER_ERROR:
         this._error = action.error;
         this._clean();
+        this.isLoggingIn = false;
         this.emitChange();
         break;
 
@@ -126,6 +127,7 @@ class LoginStore extends AbstractRequestStore {
     this._isLoggingIn = bool;
 
     //bind requestPending state to isLoggingIn state
+    console.log("setting isLogging in to", bool)
     this.requestPending = bool;
   }
 

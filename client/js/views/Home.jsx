@@ -10,18 +10,6 @@ import ModalMixin from "../mixins/ModalMixin";
 
 class Home extends React.Component {
 
-  componentWillMount(){
-    this.state = {
-    };
-  }
-
-  componentDidMount() {
-  }
-
-
-  componentWillUnmount() {
-  }
-
   render() {
 
     const user = this.props.user;

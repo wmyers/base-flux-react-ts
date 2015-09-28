@@ -18,6 +18,12 @@
 .Footerbar.blue { background-color: darken(@blue, 20%); }
 .Footerbar.teal { background-color: @teal; }
 
+.Footerbar-button {
+  &.Tappable-active {
+    background-color: lighten(@blue, 10%);
+  }
+}
+
 //panel override
 //get rid of keylines on top and bottom edge
 .panel:before{
@@ -36,9 +42,12 @@
     background-color: darken(@blue, 10%) ;
     font-weight: @font-weight-bold;
   }
-  get rid of keyline on top edge
+  //get rid of keyline on top edge
 	&.primary:before {
     height: 0;
+  }
+  &.primary.Tappable-active {
+    background-color: lighten(@blue, 5%);
   }
 
   &.primary-inv,
@@ -48,9 +57,12 @@
     background-color: lighten(@blue, 10%);
     font-weight: @font-weight-bold;
   }
-  get rid of keyline on top edge
+  //get rid of keyline on top edge
   &.primary-inv:before {
     height: 0;
+  }
+  &.primary-inv.Tappable-active {
+    background-color: darken(@blue, 5%);
   }
 }
 
