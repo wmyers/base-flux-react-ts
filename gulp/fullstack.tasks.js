@@ -20,6 +20,9 @@ var nodemon = require('gulp-nodemon');
 var reactify = require('reactify');
 var uglify = require('gulp-uglify');
 var gulpif = require('gulp-if');
+var shrinkwrap = require('gulp-shrinkwrap');
+// var rename = require("gulp-rename");
+var jsonfile = require('jsonfile');
 
 var LessPluginCleanCSS = require('less-plugin-clean-css'),
     LessPluginAutoPrefix = require('less-plugin-autoprefix'),
@@ -74,7 +77,7 @@ module.exports = function (gulp) {
 		var opts = xtend(watch && watchify.args, {
 			entries: entries,
 			debug: process.env.NODE_ENV !== 'production',
-			extensions:['.jsx']
+			extensions:['.jsx'] //allow .jsx files to be recognised as JS modules
 		});
 
 		var app = browserify(opts);
@@ -117,6 +120,44 @@ module.exports = function (gulp) {
 		return stream.pipe(gulp.dest(dest)).pipe(connect.reload());
 	}
 
+  //helper to extract production-only properties from package.json
+  function prodOnlyJson (){
+    jsonfile.readFile('./package.json', function(err, jsonObj) {
+      if(err){
+        console.error(err);
+        return;
+      }
+      var prodJsonObj = {};
+      //optional
+      var optProps = ["name", "version", "description", "author"];
+      optProps.forEach(function(p){
+        if(jsonObj[p]){
+          prodJsonObj[p] = jsonObj[p];
+        }
+      });
+      //required
+      var reqProps = ["dependencies", "engines"];
+      reqProps.forEach(function(p){
+        if(jsonObj[p]){
+          prodJsonObj[p] = jsonObj[p];
+        }else{
+          console.err("The "+p+" definition is missing from package.json");
+        }
+      });
+      //production script
+      prodJsonObj.scripts = {
+        start: "node server/app.js"
+      };
+      //write out
+      jsonfile.writeFile('./dist/package.json', prodJsonObj, function (err) {
+        if(err){
+          return console.error(err);
+        }
+        console.log('server-prod-json: production-only package.json written to dist folder');
+      })
+    })
+  };
+
 	var babelifyTransform = babelify.configure({
 		plugins: [require('babel-plugin-object-assign')],
 		optional: 'es7.objectRestSpread'
@@ -132,13 +173,23 @@ module.exports = function (gulp) {
 	gulp.task('scripts', buildApp.bind(null, ['./client/js/'+client_entrypoint], [babelifyTransform, reactify, brfs], './dist/public/js'));
 	gulp.task('scripts-watch', buildApp.bind(null, ['./client/js/'+client_entrypoint], [babelifyTransform, reactify, brfs], './dist/public/js', true));
   gulp.task('server-prod', plumb.bind(null, ['server/**'], [], 'dist/server'));
-  gulp.task('server-prod-json', plumb.bind(null, ['server-npm/package.json'], [], 'dist'));
+  gulp.task('server-prod-json', prodOnlyJson)
+
+  //Shrink-wrap package json
+  gulp.task('server-prod-shrinkwrap', function () {
+    return gulp.src('package.json')
+      .pipe(shrinkwrap())    // just like running `npm shrinkwrap`
+      .pipe(gulp.dest('./dist'));  // writes newly created `npm-shrinkwrap.json` to the location of your choice
+  });
+  //Copy azure deployment scripts
+  gulp.task('azure-deploy', plumb.bind(null, ['.deployment', 'deploy.sh'], [], 'dist'));
+
 
 	gulp.task('clean', function () { return del(['./dist/*']); });
 	gulp.task('build-assets', ['html', 'images', 'fonts', 'static-data', 'less']);
 	gulp.task('build-assets-prod', ['html', 'images', 'fonts', 'static-data', 'less-prod']);
 	gulp.task('build', ['build-assets', 'scripts']);
-	gulp.task('build-prod', ['build-assets-prod', 'scripts', 'server-prod', 'server-prod-json']);
+	gulp.task('build-prod', ['build-assets-prod', 'scripts', 'server-prod', 'server-prod-json', 'server-prod-shrinkwrap', 'azure-deploy']);
 	gulp.task('watch', ['build-assets', 'scripts-watch'], function () {
 		gulp.watch(['client/index.html'], ['html']);
 		gulp.watch(['client/css/**/*.less'], ['less']);
@@ -155,7 +206,7 @@ module.exports = function (gulp) {
     env: {                                // any environment variables
        'PORT':8080,
        'DOMAIN': 'http://localhost:8080',
-       'SESSION_SECRET':'jv-secret'
+       'SESSION_SECRET':'my-secret'
        }
     })
     .on('restart', function () {
