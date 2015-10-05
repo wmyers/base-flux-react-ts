@@ -7,15 +7,16 @@
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
+//use dotenv to set secret environment variables
+if(process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development'){
+  require('dotenv').config({path: 'server/config/environment/'+ process.env.NODE_ENV +'.env'});
+}
+
 var express = require('express');
 var mongoose = require('mongoose');
-var config = require('./config/environment');
 
-//use dotenv to set environment variables
-//directly into process.env
-if(config.env === 'production' || config.env === 'development'){
-  require('dotenv').config({path: 'server/config/environment/'+ config.env +'.env'});
-}
+//generates non-secret config
+var config = require('./config/environment');
 
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
