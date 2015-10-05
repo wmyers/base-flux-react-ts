@@ -16,7 +16,6 @@ class Signup extends React.Component {
 			lastName: "",
 			email: "",
 			password: "",
-			userType: "",
       error: null,
       confirmPassword: ""
     };
@@ -40,16 +39,12 @@ class Signup extends React.Component {
     }
   }
 
-  handleUserTypeChange(userType){
-    this.setState({userType});
-  }
-
   //action
   signup(e) {
     e.target && e.preventDefault();
 
     //Validate
-    let vals = ["firstName", "lastName", "email", "password", "userType", "confirmPassword"], currVal;
+    let vals = ["firstName", "lastName", "email", "password", "confirmPassword"], currVal;
     let isIncomplete = vals.some((val) => {
       currVal = val;
       return !!this.state[val] === false;
@@ -67,8 +62,7 @@ class Signup extends React.Component {
       this.state.firstName,
       this.state.lastName,
       this.state.email,
-      this.state.password,
-      this.state.userType
+      this.state.password
     );
   }
 
